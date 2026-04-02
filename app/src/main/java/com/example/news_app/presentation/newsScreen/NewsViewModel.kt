@@ -5,9 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.model.NewsModel
 import com.example.news_app.domain.useCase.GetNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,10 +24,17 @@ class NewsViewModel @Inject constructor(
         getNews()
     }
 
-    private fun getNews(){
+    private fun getNews() {
         viewModelScope.launch {
-            _newsState.value = getNewsUseCase()
+            try {
+                val result = withContext(Dispatchers.IO) {
+                    getNewsUseCase()
+                }
+                _newsState.value = result
+            } catch (e: Exception) {
+
+                _newsState.value = emptyList()
+            }
         }
     }
-
 }

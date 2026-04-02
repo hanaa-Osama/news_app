@@ -8,14 +8,13 @@ plugins {
 
 android {
     namespace = "com.example.news_app"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
+    // Downgraded from 36
 
     defaultConfig {
         applicationId = "com.example.news_app"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35 // Downgraded from 36
         versionCode = 1
         versionName = "1.0"
 
