@@ -37,6 +37,7 @@ object AppModule {
         return retrofit.create(NewsAPIService::class.java)
     }
 
+
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): NewsDatabase {

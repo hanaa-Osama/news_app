@@ -7,8 +7,8 @@ data class NewsResponse(
 )
 
 data class NewsDto(
-    val idNews: Int,
-    val titleNews: String,
-    val descriptionNews: String,
+    val id: Int,
+    val title: String,
+    val description: String,
 )
 

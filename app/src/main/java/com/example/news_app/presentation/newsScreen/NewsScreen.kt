@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,16 +20,13 @@ fun NewsScreen(
     userName: String,
     viewModel: NewsViewModel = hiltViewModel()
 ) {
-    val newsList by viewModel.newsState.collectAsStateWithLifecycle()
-
-    Column(modifier = Modifier.padding(16.dp)) {
-
+    val newsList by viewModel.newsState.collectAsState()
+    Column(modifier = Modifier.padding(15.dp)) {
         Text(
             text = "Hi, $userName",
             style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 15.dp)
         )
-
         LazyColumn {
             items(newsList) { news ->
                 NewsItem(news = news)

@@ -28,7 +28,6 @@ fun AppNavHost() {
                 }
             )
         }
-
         composable(
             route = Screens.NewsScreen.route,
             arguments = listOf(

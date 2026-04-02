@@ -1,5 +1,6 @@
 package com.example.news_app.presentation.newsScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.news_app.domain.model.NewsModel
@@ -33,6 +34,7 @@ class NewsViewModel @Inject constructor(
                 _newsState.value = result
             } catch (e: Exception) {
 
+                Log.e("NewsViewModel", "Error fetching news: ${e.message}")
                 _newsState.value = emptyList()
             }
         }

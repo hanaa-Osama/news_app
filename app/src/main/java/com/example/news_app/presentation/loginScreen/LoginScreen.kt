@@ -47,9 +47,7 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
-
         Spacer(modifier = Modifier.height(24.dp))
-
         Button(
             onClick = {
                 if (name.isNotBlank()) {
