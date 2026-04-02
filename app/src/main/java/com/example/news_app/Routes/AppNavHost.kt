@@ -7,10 +7,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.news_app.presentation.loginScreen.LoginScreen
-import com.example.news_app.presentation.resultScreen.ResultScreen
+import com.example.news_app.presentation.newsScreen.NewsScreen
+
 
 @Composable
-fun AppNavGraph() {
+fun AppNavHost() {
     val navController = rememberNavController()
 
     NavHost(
@@ -22,13 +23,14 @@ fun AppNavGraph() {
         ){
             LoginScreen(
                 onLoginSuccess = { userName ->
-                    navController.navigate(Screens.ResultScreen.passUserName(userName))
+                    navController.navigate(
+                        Screens.NewsScreen.passUserName(userName))
                 }
             )
         }
 
         composable(
-            route = Screens.ResultScreen.route,
+            route = Screens.NewsScreen.route,
             arguments = listOf(
                 navArgument("userName"){
                     type = NavType.StringType
@@ -36,7 +38,7 @@ fun AppNavGraph() {
             )
         ){ backStackEntry ->
             val userName= backStackEntry.arguments?.getString("userName")
-            ResultScreen(userName = userName ?: "User")
+            NewsScreen(userName = userName ?: "User")
         }
     }
 }
