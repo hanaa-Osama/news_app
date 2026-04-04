@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -81,4 +82,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    val nav_version = "2.8.0" // تأكدي إن النسخة 2.8.0 أو أحدث
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }

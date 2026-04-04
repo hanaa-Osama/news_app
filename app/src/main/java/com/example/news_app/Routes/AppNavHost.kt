@@ -1,14 +1,12 @@
 package com.example.news_app.Routes
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import androidx.navigation.toRoute
 import com.example.news_app.presentation.loginScreen.LoginScreen
 import com.example.news_app.presentation.newsScreen.NewsScreen
-
 
 @Composable
 fun AppNavHost() {
@@ -16,28 +14,22 @@ fun AppNavHost() {
 
     NavHost(
         navController = navController,
-        startDestination = Screens.LoginScreen.route
-    ){
-        composable(
-            route = Screens.LoginScreen.route,
-        ){
+        startDestination = Screens.LoginScreen
+    ) {
+
+        composable<Screens.LoginScreen> {
             LoginScreen(
                 onLoginSuccess = { userName ->
-                    navController.navigate(
-                        Screens.NewsScreen.passUserName(userName))
+                    navController.navigate(Screens.NewsScreen(userName = userName))
                 }
             )
         }
-        composable(
-            route = Screens.NewsScreen.route,
-            arguments = listOf(
-                navArgument("userName"){
-                    type = NavType.StringType
-                }
-            )
-        ){ backStackEntry ->
-            val userName= backStackEntry.arguments?.getString("userName")
-            NewsScreen(userName = userName ?: "User")
+
+
+        composable<Screens.NewsScreen> { backStackEntry ->
+            val args = backStackEntry.toRoute<Screens.NewsScreen>()
+
+            NewsScreen(userName = args.userName)
         }
     }
 }
