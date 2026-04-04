@@ -10,12 +10,11 @@ plugins {
 android {
     namespace = "com.example.news_app"
     compileSdk = 36
-    // Downgraded from 36
 
     defaultConfig {
         applicationId = "com.example.news_app"
         minSdk = 24
-        targetSdk = 35 // Downgraded from 36
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -52,6 +51,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("androidx.compose.material:material-icons-extended")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -81,9 +81,7 @@ dependencies {
     //  Coroutines:
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    implementation("androidx.navigation:navigation-compose:2.7.7")
-
-    val nav_version = "2.8.0" // تأكدي إن النسخة 2.8.0 أو أحدث
+    val nav_version = "2.8.0"
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }

@@ -2,7 +2,6 @@ package com.example.news_app.Routes
 
 import kotlinx.serialization.Serializable
 
-
 @Serializable
 sealed class Screens {
     @Serializable
@@ -10,5 +9,7 @@ sealed class Screens {
 
     @Serializable
     data class NewsScreen(val userName: String) : Screens()
-}
 
+    @Serializable
+    data class NewsDetailScreen(val title: String, val description: String) : Screens()
+}
